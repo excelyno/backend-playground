@@ -1,19 +1,17 @@
-const express = require('express'); // 1. Memanggil library express
-const cors = require('cors');       // 2. Memanggil library cors
-const app = express();              // 3. Membuat inisialisasi aplikasi express
-const port = 3000;                  // 4. Menentukan port (pintu) server
+const express = require('express'); 
+const cors = require('cors');   
+const app = express();          
+const port = 3000;              
+app.use(cors());                
+app.use(express.json());        
 
-app.use(cors());                    // 5. Mengizinkan akses dari luar (penting untuk frontend nanti)
-app.use(express.json());            // 6. Agar server bisa membaca data JSON yang dikirimkan
 
-
-//database sementara
 let todos = [
     {id: 1, task: "Belajar backend pemula", done: false},
     {id: 2, task: "membuat server express", done: true},
 ]
 
-// Route utama (Halaman depan)
+
 app.get('/', (req, res) => {
   res.send('Halo! Server Backend kamu sudah berjalan! 🚀');
 });
@@ -42,10 +40,6 @@ app.put('/todos/:id', (req, res) =>{
 })
 
 
-
-
-
-// Menjalankan server
 app.listen(port, () => {
   console.log(`Server berjalan di http://localhost:${port}`);
 });
